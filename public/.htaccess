@@ -1,0 +1,24 @@
+# Yoin — SPA fallback for shared (Apache) hosting.
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Never rewrite the service worker, manifest, offline page or real files/folders.
+RewriteRule ^(sw\.js|workbox-.*\.js|manifest\.webmanifest|offline\.html)$ - [L]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Everything else goes to the app shell.
+RewriteRule ^ index.html [L]
+
+<IfModule mod_headers.c>
+  <FilesMatch "^(sw\.js|index\.html|manifest\.webmanifest)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "-[A-Za-z0-9_-]{8,}\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+AddType application/manifest+json .webmanifest

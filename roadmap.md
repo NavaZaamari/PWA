@@ -1,0 +1,11 @@
+# Yoin roadmap
+- [x] Root shell: RTL, Persian metadata, client-only rendering, toaster, loading screen
+- [x] Auth (/auth)
+- [x] Onboarding (/welcome)
+- [x] Search (/search)
+- [x] Book page (/book/:id)
+- [x] Shelves (/shelves)
+- [x] Home (/) with goal
+- [x] Profile (/profile)
+- [x] PWA: manifest, icons, service worker, offline page, install prompt, .htaccess
+- [x] Tests for business rules
